@@ -78,24 +78,47 @@ net = CNN()
 criterion = nn.CrossEntropyLoss()
 # Select optimizer function
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
-# Train Network
-for epoch in range(2):
-    print("Epoch: ", epoch)
-    running_loss = 0.0
-    for i, data in enumerate(trainloader, 0):
-        # Get inputs
-        inputs, labels = data
-        # Zero optimizer
-        optimizer.zero_grad()
-        # Training step
-        outputs = net(inputs)
-        loss = criterion(outputs, labels)
-        loss.backward()
-        optimizer.step()
-        running_loss += loss.item()
-        if i % 2000 == 1999:
-            print('[%d, %5d] loss: %.3f' % (epoch + 1, i+1, running_loss/2000))
-            running_loss = 0.0
+# Check if we should use GPU
+if torch.cuda.is_available():
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    net.to(device)
+    # Train Network
+    for epoch in range(2):
+        print("Epoch: ", epoch)
+        running_loss = 0.0
+        for i, data in enumerate(trainloader, 0):
+            # Get inputs
+            inputs, labels = data[0].to(device), data[1].to(device)
+            # Zero optimizer
+            optimizer.zero_grad()
+            # Training step
+            outputs = net(inputs)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+            running_loss += loss.item()
+            if i % 2000 == 1999:
+                print('[%d, %5d] loss: %.3f' % (epoch + 1, i+1, running_loss/2000))
+                running_loss = 0.0
+else:
+    # Train Network
+    for epoch in range(2):
+        print("Epoch: ", epoch)
+        running_loss = 0.0
+        for i, data in enumerate(trainloader, 0):
+            # Get inputs
+            inputs, labels = data
+            # Zero optimizer
+            optimizer.zero_grad()
+            # Training step
+            outputs = net(inputs)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+            running_loss += loss.item()
+            if i % 2000 == 1999:
+                print('[%d, %5d] loss: %.3f' % (epoch + 1, i+1, running_loss/2000))
+                running_loss = 0.0
 print("Finished Training")
 # Save Model 
 PATH = './cifar_net.pth'
