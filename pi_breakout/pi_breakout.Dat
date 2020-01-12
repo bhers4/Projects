@@ -1,0 +1,30 @@
+﻿Field=#~Integer~#~50|Field=Comment~String~Comment~100|Field=Description~String~Description~100|Field=Designator~String~Designator~100|Field=Footprint~String~Footprint~100|Field=LibRef~String~LibRef~100|Field=Quantity~Integer~Quantity~100|ReportField=Currency~<none>|ReportField=ProductionQuantity~1|ReportField=ProjectFileName~pi_breakout.PrjPCB|ReportField=ProjectFullPath~C:\Users\Ben\Documents\Projects\Projects\pi_breakout\pi_breakout.PrjPCB|ReportField=Title~Bill of Materials For Project [pi_breakout.PrjPCB] (No PCB Document Selected)|ReportField=ReportTime~6:00:23 PM|ReportField=ReportDate~2020-01-11|ReportField=ReportDateTime~2020-01-11 6:00:23 PM|ReportField=OutputName~Bill of Materials|ReportField=OutputType~BOM_PartType|ReportField=GeneratorName~BOM|ReportField=GeneratorDescription~Bill of Materials|ReportField=VariantName~None|ReportField=TotalQuantity~56|ReportField=TotalActualPrice~0|ReportField=TotalTargetPrice~0|ReportField=VersionControl_RevNumber~|ReportField=VersionControl_ProjFolderRevNumber~|ReportField=Address1~|ReportField=Address2~|ReportField=Address3~|ReportField=Address4~|ReportField=Application_BuildNumber~|ReportField=ApprovedBy~|ReportField=Author~|ReportField=CheckedBy~|ReportField=CompanyName~|ReportField=CurrentDate~2020-01-11|ReportField=CurrentTime~6:00:20 PM|ReportField=Date~|ReportField=DocumentFullPathAndName~C:\Users\Ben\Documents\Projects\Projects\pi_breakout\pi_breakout.SchDoc|ReportField=DocumentName~pi_breakout.SchDoc|ReportField=DocumentNumber~|ReportField=DrawnBy~|ReportField=Engineer~|ReportField=ImagePath~|ReportField=ModifiedDate~2020-01-11|ReportField=Organization~|ReportField=ProjectName~pi_breakout.PrjPCB|ReportField=Revision~|ReportField=Rule~|ReportField=SheetNumber~|ReportField=SheetTotal~|ReportField=Time~|ReportField=Title~|ReportField=DataSourceFileName~pi_breakout.PrjPCB|ReportField=DataSourceFullPath~C:\Users\Ben\Documents\Projects\Projects\pi_breakout\pi_breakout.PrjPCB|ReportField=PCBConfigurationName~Sources|ReportField=Item~|ReportField=ItemRevision~|ReportField=ItemAndRevision~|ReportField=ItemRevisionBase~|ReportField=ItemRevisionLevel1~|ReportField=ItemRevisionLevel2~|ReportField=ItemRevisionLevel1AndBase~|ReportField=ItemRevisionLevel2AndLevel1~
+1|CAP ALUM 470UF RADIAL|470µF 35V Aluminum Electrolytic Capacitors Radial, Can - SMD  5000 Hrs @ 105°C|C1, C5|Aluminum Electrolytic Capacitors Radial|CAP ALUM 470UF Aluminum Electrolytic Radial|2
+2|10uF|CAP CER 10UF 10V X5R 0805|C2, C6|0805|CAP 10uF 0805|2
+3|1uF|CAP CER 1UF 50V X7R 0805|C3, C11, C12, C13, C14|0805|CAP 1uF 0805|5
+4|10nF|CAP CER 10000PF 50V X7R 0805|C4|0805|CAP 10nF 0805|1
+5|1nF|CAP CER 1000PF 50V X7R 0805|C7|0805|CAP 1nF 0805|1
+6|470pF|CAP CER 470PF 50V C0G/NPO 0805|C8|0805|CAP 470pF 0805|1
+7|100nF|CAP CER 0.1UF 50V X7R 0805|C9, C10|0805|CAP 100nF 0805|2
+8|DIODE SCHOTTKY 40V 3A SMC|Diode Schottky 40V 3A Surface Mount SMC|D1|SMC|B340-13-F|1
+9|LED2|Typical RED, GREEN, YELLOW, AMBER GaAs LED|D2, D3, D4, D5, D6, D8, D9|3.2X1.6X1.1|LED GREEN SMD|7
+10|Fuse 3A 1206|FUSE 3.0A 63VAC/DC SLOW 1206|F1, F2|1206|Fuse 3A 1206|2
+11|SRU1048-8R2Y|FIXED IND 8.2UH 4.6A 15 MOHM SMD|L1|Inductor|SRU1048-8R2Y|1
+12|Pi Breakout|Header, 20-Pin, Dual row|P1|HDR2X20|Header 20X2|1
+13|Header 2|Header, 2-Pin|P2, Puart|HDR1X2|Header 2|2
+14|Header 2X2|Header, 2-Pin, Dual row|P3, P5|HDR2X2|Header 2X2|2
+15|Header 4X2|Header, 4-Pin, Dual row|P4|HDR2X4|Header 4X2|1
+16|Header 8|Header, 8-Pin|P10, Pm|HDR1X8|Header 8|2
+17|Header 6|Header, 6-Pin|P11|HDR1X6|Header 6|1
+18|Header 4|Header, 4-Pin|Ppwr, Pultra|HDR1X4|Header 4|2
+19|N-Channel|MOSFET N-CH 30V 18.5A 8-SOIC|Q1, Q2, Q3, Q4|8-SOIC MOSFET|MOSFET N Channel 8-SOIC|4
+20|5.1k|RES SMD 5.1K OHM 1% 1/8W 0805|R1|0805|RES 5.1k 0805|1
+21|30k|RES SMD 30K OHM 1% 1/8W 0805|R2|0805|RES 30k 0805|1
+22|47k|RES SMD 47K OHM 1% 1/8W 0805|R3|0805|RES 47k 0805|1
+23|330|RES SMD 330 OHM 1% 1/8W 0805|R4, R5, R11, R12, R13, R14|0805|RES 330 0805|6
+24|560|RES 560 OHM 1% 1/8W 0805|R6|0805|RES 560 0805|1
+25|10k|RES SMD 10K OHM 1% 1/8W 0805|R7, R8|0805|RES 10k 0805|2
+26|1k|RES SMD 1K OHM 5% 1/8W 0805|R9|0805|RES 1k 0805|1
+27|1.96K|RES SMD 1.96K OHM 1% 1/8W 0805|R10|0805|RES 1.96k 0805|1
+28|REG BOOST ADJ. 5.5A|Boost Switching Regulator IC Positive Adjustable 2.7V 1 Output 5.5A (Switch) 8-SOIC (0.154", 3.90mm Width) Exposed Pad|U1|ICREGBOOSTADJUSTABLE5.5A8SO|REG BOOST ADJUSTABLE 5.5A 8SO|1
+29|ACCEL/GYRO I2C/SPI|Accelerometer, Gyroscope, Temperature, 6 Axis Sensor I²C, SPI Output|U2|IMU 14-LGA|IMU 14LGA|1
