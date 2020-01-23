@@ -14,3 +14,10 @@ machine_learning/ImageSegmentation/.idea/modules.xml
 machine_learning/ImageSegmentation/.idea/workspace.xml
 *.Zip
 *.LOG
+machine_learning/Logistic_Regression/.idea/inspectionProfiles/profiles_settings.xml
+machine_learning/Logistic_Regression/.idea/Logistic_Regression.iml
+machine_learning/Logistic_Regression/.idea/misc.xml
+machine_learning/Logistic_Regression/.idea/modules.xml
+machine_learning/Logistic_Regression/.idea/vcs.xml
+machine_learning/Logistic_Regression/.idea/workspace.xml
+*.SchDocPreview
