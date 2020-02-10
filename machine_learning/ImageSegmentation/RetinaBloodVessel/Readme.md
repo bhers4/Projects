@@ -9,11 +9,29 @@ segmentation papers on Arxiv so I decided to use this dataset as a fun/interesti
 different network architectures for image segmentation and the effect of different loss functions.
 An example of the dataset is shown below.
 <br />
-<img src="outputImages/Org0.png" alt="drawing" width="300" height="300">
+<img src="outputImages/Org0.png" alt="drawing" width="250" height="250">
 <br />
-<img src="outputImages/Actual0.png" alt="drawing" width="300" height="300">
-<img src="outputImages/Pred0.png" alt="drawing" width="300" height="300">
+### Actual on left, Predicted on Right
+<img src="outputImages/Actual0.png" alt="drawing" width="250" height="250">
+<img src="outputImages/Pred0.png" alt="drawing" width="250" height="250">
 <br />
-<img src="outputImages/Actual1.png" alt="drawing" width="300" height="300">
-<img src="outputImages/Pred1.png" alt="drawing" width="300" height="300">
+<img src="outputImages/Org1.png" alt="drawing" width="250" height="250">
+<br />
+<img src="outputImages/Actual1.png" alt="drawing" width="250" height="250">
+<img src="outputImages/Pred1.png" alt="drawing" width="250" height="250">
+<br />
+<img src="outputImages/Org2.png" alt="drawing" width="250" height="250">
+<br />
+<img src="outputImages/Actual2.png" alt="drawing" width="250" height="250">
+<img src="outputImages/Pred2.png" alt="drawing" width="250" height="250">
+<br />
+<img src="outputImages/Org3.png" alt="drawing" width="250" height="250">
+<br />
+<img src="outputImages/Actual3.png" alt="drawing" width="250" height="250">
+<img src="outputImages/Pred3.png" alt="drawing" width="250" height="250">
+<br />
+<img src="outputImages/Org4.png" alt="drawing" width="250" height="250">
+<br />
+<img src="outputImages/Actual4.png" alt="drawing" width="250" height="250">
+<img src="outputImages/Pred4.png" alt="drawing" width="250" height="250">
 <br />
