@@ -10,7 +10,10 @@ different network architectures for image segmentation and the effect of differe
 An example of the dataset is shown below.
 <br />
 <img src="outputImages/Org0.png" alt="drawing" width="300" height="300">
-![alt-text](outputImages/Org0.png)
-![alt-text](outputImages/Actual0.png) ![alt-text](outputImages/Pred0.png)
-![alt-text](outputImages/Org1.png)
-![alt-text](outputImages/Actual1.png) ![alt-text](outputImages/Pred1.png)
+<br />
+<img src="outputImages/Actual0.png" alt="drawing" width="300" height="300">
+<img src="outputImages/Pred0.png" alt="drawing" width="300" height="300">
+<br />
+<img src="outputImages/Actual1.png" alt="drawing" width="300" height="300">
+<img src="outputImages/Pred1.png" alt="drawing" width="300" height="300">
+<br />
