@@ -1,16 +1,17 @@
 import torch
 import numpy as np
 import torch.nn as nn
-import torch.nn.functional as F
+from matplotlib import pyplot as plt
 from collections import OrderedDict
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 import glob
-import os, sys
+import os
 import imageio
 import random
 from PIL import Image
+import argparse
 
 class UNet(nn.Module):
     def __init__(self, in_channels=3, out_channels=1, init_features=32):
@@ -25,8 +26,8 @@ class UNet(nn.Module):
         self.encoder4 = UNet._block(features*4, features*8, name="enc4")
         self.pool4 = nn.MaxPool2d(kernel_size=2, stride=2)
         self.bottleneck = UNet._block(features*8, features*16, name="bottleneck")
-		# Decoder networks do convolutions and then upsample the image through the transpose
-		# convolutions which learn how to upsample images with fractional strides( zero padded )
+        # Decoder networks do convolutions and then upsample the image through the transpose
+        # convolutions which learn how to upsample images with fractional strides( zero padded )
         self.upconv4 = nn.ConvTranspose2d(features*16, features*8, kernel_size=2, stride=2)
         self.decoder4 = UNet._block(features*16, features*8, name="dec4")
         self.upconv3 = nn.ConvTranspose2d(features*8, features*4, kernel_size=2, stride=2)
@@ -79,6 +80,7 @@ class UNet(nn.Module):
             (name+"relu2", nn.ReLU(inplace=True)),
         ]))
 
+
 class RetinaDataset(Dataset):
     def __init__(self, imageData, imageTarget, transform=None,randomSampling=True):
         self.to_tensor = transforms.ToTensor()
@@ -90,18 +92,18 @@ class RetinaDataset(Dataset):
         # Load original images
         for item in glob.glob(os.path.join(imageData, "*.png")):
             img = imageio.imread(item)
-            name = item.split("\\")[1]
+            # name = item.split("/")[1]
             self.images.append(img)
         # Load segmented images
         for item in glob.glob(os.path.join(imageTarget, "*.png")):
             img = imageio.imread(item)
-            name = item.split("\\")[1]
+            # name = item.split("\\")[1]
             self.masks.append(img)
         assert(len(self.images)==len(self.masks), "Don't have the same amount of images and masks")
     
     def __len__(self):
         return len(self.images)
-    
+    # TODO make it so we can get image file
     def __getitem__(self, index):
         img = Image.fromarray(np.asarray(self.images[index]))
         mask = Image.fromarray(np.asarray(self.masks[index]))
@@ -140,7 +142,6 @@ def trainTestSplit(imageData, imageTarget, trainImage, trainTarget, testImage, t
     
 
 if __name__ == "__main__":
-    print("Started Here")
     imageData = "Images/"
     imageTarget = "AnnotatedImages/"
     trainImages = "trainImages/"
@@ -156,14 +157,21 @@ if __name__ == "__main__":
     batchSize = 3
     loaderTrain = DataLoader(trainData, batch_size=batchSize,
                              shuffle=True, num_workers=1)
-    loaderTest = DataLoader(testData, batch_size=batchSize,
+    loaderTest = DataLoader(testData, batch_size=1,
                              shuffle=True, num_workers=1)
+    useCuda = torch.cuda.is_available()
+    device = torch.device("cpu" if not useCuda else "cuda:0")
+    print("UseCuda: ", useCuda)
     model = UNet(in_channels=3, out_channels=1, init_features=32)
+    if useCuda:
+      model.to(device)
+
     loss = nn.MSELoss()
-    learningRate = 0.002
+    # Try L1 loss
+    learningRate = 0.001
     optimizer = optim.Adam(model.parameters(), lr=learningRate)
-    epochs = 100
-    loaders = {"train": loaderTrain, "valid": loaderTest}
+    epochs = 150
+    loaders = {"train": loaderTrain, "test": loaderTest}
     losses = []
     epochLosses = []
     for epoch in range(epochs):
@@ -171,8 +179,8 @@ if __name__ == "__main__":
         eLosses = []
         for i, data in enumerate(loaders['train']):
             img, mask = data
+            img, mask = img.to(device), mask.to(device)
             optimizer.zero_grad()
-            print("Img shape: ", img.shape, " Mask shape: ", mask.shape)
 
             with torch.set_grad_enabled(True):
                 maskPred = model(img)
@@ -180,16 +188,46 @@ if __name__ == "__main__":
                 losses.append(maskLoss)
                 maskLoss.backward()
                 optimizer.step()
-                eLosses.append(maskLoss)
-        epochLosses.append(eLosses)
-        print("Epoch: %d, Loss: %f" %(epoch, np.mean(eLosses)))
+                lossFloat = maskLoss.float().data.item()
+                eLosses.append(lossFloat)
+        epochLosses.append(np.mean(eLosses))
+        print("Epoch: %d, Loss: %f" % (epoch, np.mean(eLosses)))
     torch.save(model, 'unet.pt')
-
-    for i, data in enumerate(testData):
+    print("Finished Training -- Moving to Testing")
+    plt.plot(epochLosses)
+    plt.title("Loss per Epoch")
+    plt.xlabel('Epoch')
+    plt.ylabel('MSELoss')
+    plt.show()
+    gray = transforms.ToPILImage()
+    # TODO add in argparse package and able to "load" model and just do this part
+    for i, data in enumerate(loaders['test']):
         img, mask = data
+        img, mask = img.to(device), mask.to(device)
         maskPred = model(img)
         maskLoss = loss(maskPred, mask)
-        print("Loss: ", maskLoss)
-        print(type(maskPred))
-        imageio.imshow(maskPred)
-            
+        lossFloat = maskLoss.float().data.item()
+        print("Loss: ", lossFloat)
+        npMaskPred = maskPred.cpu().detach().numpy()
+        npMaskPred = np.reshape(npMaskPred, (512, 512, 1))
+        npMaskPred = np.reshape(npMaskPred, (512, 512))
+        #npMaskPred = (npMaskPred>0.5)*255
+        print(npMaskPred.shape)
+        print(np.max(npMaskPred))
+        print(np.min(npMaskPred))
+        img = img.cpu().detach().numpy()
+        img = np.reshape(img, (3, 512, 512))
+        img = img.transpose(1, 2, 0)
+        imgActual = Image.fromarray(img.astype('uint8'))
+        imgActual.save("outputImages/Org"+str(i)+".png")
+        # Try to do >50
+        npMaskPred = (npMaskPred>(np.max(npMaskPred)/2))*255
+        npMaskPred = Image.fromarray(npMaskPred.astype(dtype="uint8"))
+        savestr = "Pred"+str(i)
+        savestr1 = "Actual"+str(i)
+        npMaskPred.save("outputImages/"+savestr+".png")
+        maskTarget = mask.cpu().numpy()
+        maskTarget = np.reshape(maskTarget, (512, 512, 1))
+        maskTarget = np.reshape(maskTarget, (512, 512))
+        maskTarget = Image.fromarray(maskTarget.astype('uint8'))
+        maskTarget.save("outputImages/"+savestr1+".png")
