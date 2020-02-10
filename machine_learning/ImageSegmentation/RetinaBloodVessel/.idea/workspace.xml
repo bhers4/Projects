@@ -7,6 +7,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
@@ -20,7 +27,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Python" />
   </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -49,6 +56,18 @@
         <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -84,9 +103,10 @@
     </state>
     <state width="1899" height="282" key="GridCell.Tab.0.right/1920.312.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1581314097819" />
     <state width="1899" height="282" key="GridCell.Tab.0.right/1920.312.1920.1040/0.0.1920.1040@1920.312.1920.1040" timestamp="1581318905356" />
-    <state x="461" y="163" key="SettingsEditor" timestamp="1581314095649">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="284" y="0" key="SettingsEditor" timestamp="1581367129475">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state x="284" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1581367129474" />
     <state x="461" y="163" key="SettingsEditor/1920.312.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1581314095649" />
   </component>
 </project>
