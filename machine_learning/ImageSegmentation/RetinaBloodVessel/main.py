@@ -104,7 +104,7 @@ class RetinaDataset(Dataset):
             img = imageio.imread(item)
             # name = item.split("\\")[1]
             self.masks.append(img)
-        assert(len(self.images)==len(self.masks), "Don't have the same amount of images and masks")
+        # assert(len(self.images)==len(self.masks), "Don't have the same amount of images and masks")
     
     def __len__(self):
         return len(self.images)
@@ -171,11 +171,12 @@ if __name__ == "__main__":
     if useCuda:
       model.to(device)
 
+    # loss = nn.MSELoss()
     loss = nn.MSELoss()
     # Try L1 loss
     learningRate = 0.001
     optimizer = optim.Adam(model.parameters(), lr=learningRate)
-    epochs = 150
+    epochs = 300
     loaders = {"train": loaderTrain, "test": loaderTest}
     losses = []
     epochLosses = []
