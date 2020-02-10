@@ -8,10 +8,10 @@ architectures was UNet. I happened upon the STARE project from UCSD in different
 segmentation papers on Arxiv so I decided to use this dataset as a fun/interesting dataset to try
 different network architectures for image segmentation and the effect of different loss functions.
 An example of the dataset is shown below.
+### Actual on left, Predicted on Right
 <br />
 <img src="outputImages/Org0.png" alt="drawing" width="250" height="250">
 <br />
-### Actual on left, Predicted on Right
 <img src="outputImages/Actual0.png" alt="drawing" width="250" height="250">
 <img src="outputImages/Pred0.png" alt="drawing" width="250" height="250">
 <br />
