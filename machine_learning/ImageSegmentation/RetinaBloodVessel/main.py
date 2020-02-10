@@ -1,3 +1,7 @@
+"""
+    Author: Ben Hers
+    Acknowledgements:
+"""
 import torch
 import numpy as np
 import torch.nn as nn
@@ -12,6 +16,7 @@ import imageio
 import random
 from PIL import Image
 import argparse
+from sklearn.metrics import f1_score, precision_score,recall_score
 
 class UNet(nn.Module):
     def __init__(self, in_channels=3, out_channels=1, init_features=32):
@@ -200,6 +205,10 @@ if __name__ == "__main__":
     plt.ylabel('MSELoss')
     plt.show()
     gray = transforms.ToPILImage()
+    f1scores = []
+    precisions = []
+    recalls = []
+    mseloss = []
     # TODO add in argparse package and able to "load" model and just do this part
     for i, data in enumerate(loaders['test']):
         img, mask = data
@@ -207,12 +216,9 @@ if __name__ == "__main__":
         maskPred = model(img)
         maskLoss = loss(maskPred, mask)
         lossFloat = maskLoss.float().data.item()
-        print("Loss: ", lossFloat)
         npMaskPred = maskPred.cpu().detach().numpy()
         npMaskPred = np.reshape(npMaskPred, (512, 512, 1))
         npMaskPred = np.reshape(npMaskPred, (512, 512))
-        #npMaskPred = (npMaskPred>0.5)*255
-        print(npMaskPred.shape)
         print(np.max(npMaskPred))
         print(np.min(npMaskPred))
         img = img.cpu().detach().numpy()
@@ -231,3 +237,14 @@ if __name__ == "__main__":
         maskTarget = np.reshape(maskTarget, (512, 512))
         maskTarget = Image.fromarray(maskTarget.astype('uint8'))
         maskTarget.save("outputImages/"+savestr1+".png")
+        npMaskPred = (npMaskPred>(np.max(npMaskPred)/2))
+        maskTarget = (maskTarget>(np.max(maskTarget)/2))
+        f1score = f1_score(maskTarget, npMaskPred, average="micro")
+        precisionScore = precision_score(maskTarget, npMaskPred, average="micro")
+        recallScore = recall_score(maskTarget, npMaskPred, average="micro")
+        mseloss.append(lossFloat)
+        f1scores.append(f1score)
+        precisions.append(precisionScore)
+        recalls.append(recallScore)
+    print("F1 score: ", np.mean(f1scores), " Precision: ", np.mean(precisions), " Recall: ", np.mean(recalls))
+    print("Loss: ", np.mean(mseloss))
