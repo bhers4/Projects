@@ -111,6 +111,7 @@ class RUNet(nn.Module):
         self.bottleneck = ResidualBlock(in_channels=features*8, out_channels=features*16)
         # Decoder networks do convolutions and then upsample the image through the transpose
         # convolutions which learn how to upsample images with fractional strides( zero padded )
+        # TODO Try only doing ResNet blocks on encoder part
         self.upconv4 = nn.ConvTranspose2d(features * 16, features * 8, kernel_size=2, stride=2)
         self.decoder4 = ResidualBlock(in_channels=features*16, out_channels=features*8)
         self.upconv3 = nn.ConvTranspose2d(features * 8, features * 4, kernel_size=2, stride=2)
