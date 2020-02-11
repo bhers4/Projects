@@ -79,15 +79,19 @@ class ResidualBlock(nn.Module):
         self.relu = nn.ReLU(inplace=True)
         self.conv2 = nn.Conv2d(in_channels=out_channels, out_channels=out_channels, kernel_size=3,padding=1, bias=False)
         self.norm2 = nn.BatchNorm2d(num_features=out_channels)
+        self.conv1x1 = nn.Conv2d(in_channels=in_channels, out_channels=out_channels, kernel_size=1, stride=1, padding=0)
 
     def forward(self, x):
-        residual = x
+        # Do 1x1 kernel to skip get dimensions to match
+        residual = self.conv1x1(x)
         out = self.conv1(x)
+        # oneSkip = out
         out = self.norm1(out)
         out = self.relu(out)
         out = self.conv2(out)
-        out = self.norm2(out)
+        # out += oneSkip   # <--- this works
         out += residual
+        out = self.norm2(out)
         out = self.relu(out)
         return out
 

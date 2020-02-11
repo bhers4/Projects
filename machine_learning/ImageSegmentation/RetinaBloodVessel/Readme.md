@@ -24,44 +24,89 @@ An example of the dataset is shown below.
         <th>MSE</th>
         <th>0.001 </th>
         <th>100</th>
-        <th>0.771</th>
-        <th>0.810 </th>
-        <th>0.7399</th>
+        <th>0.641</th>
+        <th>0.909 </th>
+        <th>0.54</th>
     </tr>
     <tr>
         <th>UNet</th>
         <th>MSE</th>
         <th>0.001 </th>
         <th>175</th>
-        <th>0.772 </th>
-        <th>0.868 </th>
-        <th>0.7043</th>
+        <th>0.668 </th>
+        <th>0.895 </th>
+        <th>0.559</th>
     </tr>
     <tr>
         <th>UNet</th>
         <th>MSE</th>
         <th>0.001 </th>
         <th>250</th>
-        <th>0.7809 </th>
-        <th>0.8029 </th>
-        <th>0.7653</th>
+        <th>0.767 </th>
+        <th>0.847 </th>
+        <th>0.724</th>
     </tr>
     <tr>
         <th>UNet</th>
         <th>MSE</th>
         <th>0.001 </th>
         <th>300</th>
-        <th>0.775 </th>
-        <th>0.815 </th>
-        <th>0.7454</th>
+        <th>0.809</th>
+        <th>0.831 </th>
+        <th>0.799</th>
+    </tr>
+    <tr>
+        <th>UNet</th>
+        <th>MSE</th>
+        <th>0.001 </th>
+        <th>350</th>
+        <th>0.779</th>
+        <th>0.847</th>
+        <th>0.747</th>
+    </tr>
+    <tr>
+        <th>RUNet</th>
+        <th>MSE</th>
+        <th>0.001</th>
+        <th>100</th>
+        <th>0.690</th>
+        <th>0.849</th>
+        <th>0.624</th>
+    </tr>
+    <tr>
+        <th>RUNet</th>
+        <th>MSE</th>
+        <th>0.001</th>
+        <th>175</th>
+        <th>0.699</th>
+        <th>0.825</th>
+        <th>0.649</th>
+    </tr>
+    <tr>
+        <th>RUNet</th>
+        <th>MSE</th>
+        <th>0.001</th>
+        <th>250</th>
+        <th>0.687</th>
+        <th>0.897</th>
+        <th>0.583</th>
+    </tr>
+    <tr>
+        <th>RUNet</th>
+        <th>MSE</th>
+        <th>0.001</th>
+        <th>300</th>
+        <th>0.743</th>
+        <th>0.857</th>
+        <th>0.679</th>
     </tr>
     <tr>
         <th>UNet</th>
         <th>L1</th>
-        <th>0.001 </th>
+        <th>0.001</th>
         <th>100</th>
-        <th>0.008 </th>
-        <th>0.978 </th>
+        <th>0.008</th>
+        <th>0.978</th>
         <th>0.004</th>
     </tr>
     <tr>

@@ -7,6 +7,7 @@ Machine Learning/PyTorchTutorials/Tutorial1/.idea/TestSpyderNotebook.iml
 Machine Learning/PyTorchTutorials/Tutorial1/.idea/modules.xml
 Machine Learning/PyTorchTutorials/Tutorial1/.idea/misc.xml
 *.tif
+*.idea
 machine_learning/.idea/workspace.xml
 machine_learning/ImageSegmentation/.idea/ImageSegmentation.iml
 machine_learning/ImageSegmentation/.idea/misc.xml

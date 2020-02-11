@@ -102,6 +102,7 @@ def evalModel(evalArgs, loaderTrain, loaderTest, model, device, loss):
     recalls = []
     mseloss = []
     loaders = {"train": loaderTrain, "test": loaderTest}
+    model.eval()
     # TODO Check setting model.eval() makes a difference <-----
     for i, data in enumerate(loaders['test']):
         img, mask = data
@@ -147,7 +148,7 @@ def trainModel(trainArgs, loaderTrain, loaderTest, model, device):
     loss = nn.MSELoss()
     learningRate = 0.001
     optimizer = optim.Adam(model.parameters(), lr=learningRate)
-    epochs = 20
+    epochs = 300
     loaders = {"train": loaderTrain, "test": loaderTest}
     losses = []
     epochLosses = []
@@ -231,19 +232,10 @@ def main(argsMain):
         print("Evaluating")
         # Means we are evaluating
         if argsMain.model.lower() == "runet":
-            try:
-                model = RUNet()
-                model.load_state_dict(torch.load('runet.pt'))
-            except:
-                print("Error loading RUNet model, check there is one")
-                sys.exit()
+            model.load_state_dict(torch.load('runet.pt'))
+            print(type(model))
         else:
-            try:
-                model = UNet()
-                model.load_state_dict(torch.load('unet.pt'))
-            except:
-                print("Error loading UNet model, check there is one")
-                sys.exit()
+            model.load_state_dict(torch.load('unet.pt'))
         evalModel(argsMain, loaderTrain, loaderTest, model, device, nn.MSELoss())
     else:
         print("Training......")
