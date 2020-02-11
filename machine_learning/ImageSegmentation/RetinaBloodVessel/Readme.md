@@ -2,18 +2,15 @@
 ### Author: Ben Hers
 ### Architecture: UNet using 4 Encoder/Decoder blocks
 #### Dataset: The Stare Project
-Upon starting into the field of using deep learning for biomedical imaging, I started by working
-on different object detection and image segmentation tasks and one of the most popular
-architectures was <a href="https://arxiv.org/abs/1505.04597">UNet</a>. I happened upon the STARE project from UCSD in different biomedical image
-segmentation papers on Arxiv so I decided to use this dataset as a fun/interesting dataset to try
-different network architectures for image segmentation and the effect of different loss functions.
-An example of the dataset is shown below. Due to the advances in fully connected layer architectures
+Traditional computer vision tasks are classification problems where we assign labels to images, but in biomedical image processing we normally want a pixel wise classification or localization. In my other research I was dealing with object detection and image segmentation tasks and one of the most popular
+architectures was <a href="https://arxiv.org/abs/1505.04597">UNet</a>. I happened upon the STARE project from UCSD in different biomedical image segmentation papers on Arxiv so I decided to use this dataset as a fun/interesting dataset to try different network architectures for image segmentation and the effect of different loss functions. An example of the dataset is shown below. Due to the advances in fully connected layer architectures
 <a href="https://arxiv.org/pdf/1512.03385.pdf">Resnet</a> has been one of the most popular network architectures for different deep learning and computer
 vision tasks, so in this project I investigate using both UNet as well as for every encoder
-decoder block using a residual network(RUNet). My RUNet adds in a skip connection to each
+decoder block using a residual network(RUNet). My RUNet adds in a skip connection to each of the conv3x3 blocks to help improve the accuracy of the models.
 ### UNet Architecture
 <img src="https://miro.medium.com/max/1412/1*f7YOaE4TWubwaFF7Z1fzNw.png" width="600" height="400">
 <br />
+<h2>Results</h2>
 <table >
     <tr>
         <th>Architecture</th>

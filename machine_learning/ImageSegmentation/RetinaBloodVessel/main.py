@@ -1,6 +1,8 @@
 """
     Author: Ben Hers
-    Acknowledgements:
+    Title: Retina Blood Vessel Segmentation using UNet and Resnet
+    Acknowledgements: The Stare Project from UCSD for the dataset
+    UNet inspiration: https://www.kaggle.com/mateuszbuda/brain-segmentation-pytorch
 """
 import torch
 import numpy as np
@@ -38,6 +40,9 @@ def add_arguments(parser):
 
 
 class RetinaDataset(Dataset):
+    """
+        Custom Dataset that can be passed to torchvision dataloader, loads images from directory and resizes them
+    """
     def __init__(self, imageData, imageTarget, transform=None, randomSampling=True):
         self.to_tensor = transforms.ToTensor()
         self.images = []
@@ -48,19 +53,16 @@ class RetinaDataset(Dataset):
         # Load original images
         for item in glob.glob(os.path.join(imageData, "*.png")):
             img = imageio.imread(item)
-            # name = item.split("/")[1]
             self.images.append(img)
         # Load segmented images
         for item in glob.glob(os.path.join(imageTarget, "*.png")):
             img = imageio.imread(item)
-            # name = item.split("\\")[1]
             self.masks.append(img)
-        # assert(len(self.images)==len(self.masks), "Don't have the same amount of images and masks")
     
     def __len__(self):
         return len(self.images)
-    # TODO make it so we can get image file
     def __getitem__(self, index):
+        # To resize the image we need to load it into PIL format for PyTorch
         img = Image.fromarray(np.asarray(self.images[index]))
         mask = Image.fromarray(np.asarray(self.masks[index]))
         img = torch.from_numpy(np.array(self.resize(img), dtype=np.float32).transpose(2, 0, 1))
@@ -80,6 +82,7 @@ def trainTestSplit(imageData, imageTarget, trainImage, trainTarget, testImage, t
         img = imageio.imread(item)
         name = item.split("\\")[1]
         masks.append(img)
+    # In this next section we write 75% of the data into folders for training and rest in other folders for testing
     trainImages = random.sample(images, int(len(images)*0.75))
     for item in trainImages:
         img = imageio.imread(imageData+item)
@@ -102,14 +105,19 @@ def evalModel(evalArgs, loaderTrain, loaderTest, model, device, loss):
     recalls = []
     mseloss = []
     loaders = {"train": loaderTrain, "test": loaderTest}
+    # Important to switch model into eval mode
     model.eval()
-    # TODO Check setting model.eval() makes a difference <-----
     for i, data in enumerate(loaders['test']):
         img, mask = data
+        # Send data to gpu if we have one
         img, mask = img.to(device), mask.to(device)
+        # Predict a masl
         maskPred = model(img)
+        # Calculate the loss between generated mask and actual
         maskLoss = loss(maskPred, mask)
+        # Get loss as float
         lossFloat = maskLoss.float().data.item()
+        # Have to send predicted mask to cpu and detach it
         npMaskPred = maskPred.cpu().detach().numpy()
         npMaskPred = np.reshape(npMaskPred, (512, 512, 1))
         npMaskPred = np.reshape(npMaskPred, (512, 512))
@@ -120,7 +128,6 @@ def evalModel(evalArgs, loaderTrain, loaderTest, model, device, loss):
         img = img.transpose(1, 2, 0)
         imgActual = Image.fromarray(img.astype('uint8'))
         imgActual.save("outputImages/Org" + str(i) + ".png")
-        # Try to do >50
         npMaskPred = (npMaskPred > (np.max(npMaskPred) / 2)) * 255
         npMaskPred = Image.fromarray(npMaskPred.astype(dtype="uint8"))
         savestr = "Pred" + str(i)
