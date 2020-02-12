@@ -156,7 +156,7 @@ if save_first:
 plt.show()
 
 
-w, b, costs = gradient_descent(X,Y,num_iterations=100000,learning_rate=0.002)
+w, b, costs = gradient_descent(X,Y,num_iterations=150000,learning_rate=0.002)
 plt.plot(costs)
 plt.xlabel('Iteration')
 plt.ylabel('Cost')

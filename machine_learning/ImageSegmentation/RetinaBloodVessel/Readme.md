@@ -103,6 +103,15 @@ decoder block using a residual network(RUNet). My RUNet adds in a skip connectio
         <th>0.679</th>
     </tr>
     <tr>
+        <th>RUNet</th>
+        <th>MSE</th>
+        <th>0.001</th>
+        <th>350</th>
+        <th>0.789</th>
+        <th>0.869</th>
+        <th>0.74</th>
+    </tr>
+    <tr>
         <th>UNet</th>
         <th>L1</th>
         <th>0.001</th>

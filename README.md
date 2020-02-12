@@ -3,9 +3,11 @@
 ## Current Projects
 ### Deep Learning and Computer Vision
 #### Basics
-<!-->Add in Images<!-->
 * Logistic Regression classifier trained with gradient descent by hand using no libraries
-* Simple 2 layer neural network from scratch no libraries(coming soon)
+<br />
+<img src="/machine_learning/Logistic_Regression/lrDecisionBoundary.png" width="300" height="300">
+* Simple 2 layer neural network from scratch no libraries
+<img src="/machine_learning/neuralNet/neuralnet.png" width="300" height="300">
 * Perceptron Learning Algorithm(coming soon)
 #### Deep Learning
 * CNN for MNIST10 data using PyTorch

@@ -155,7 +155,7 @@ def trainModel(trainArgs, loaderTrain, loaderTest, model, device):
     loss = nn.MSELoss()
     learningRate = 0.001
     optimizer = optim.Adam(model.parameters(), lr=learningRate)
-    epochs = 300
+    epochs = 350
     loaders = {"train": loaderTrain, "test": loaderTest}
     losses = []
     epochLosses = []
@@ -204,6 +204,7 @@ def main(argsMain):
         print(model)
         sys.exit()
     useCuda = torch.cuda.is_available()
+    print(useCuda)
     if useCuda is False:
         device = torch.device("cpu")
     else:
