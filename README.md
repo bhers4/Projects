@@ -8,7 +8,10 @@
 <img src="/machine_learning/Logistic_Regression/lrDecisionBoundary.png" width="300" height="300">
 * Simple 2 layer neural network from scratch no libraries
 <img src="/machine_learning/neuralNet/neuralnet.png" width="300" height="300">
+<br />
+
 * Perceptron Learning Algorithm(coming soon)
+<br />
 #### Deep Learning
 * CNN for MNIST10 data using PyTorch
 * <a href="https://github.com/bhers4/Projects/tree/master/machine_learning/ImageSegmentation/RetinaBloodVessel">Retina Blood Vessel Image Segmentation</a>
