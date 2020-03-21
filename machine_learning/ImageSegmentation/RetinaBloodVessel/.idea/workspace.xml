@@ -33,7 +33,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Courses/School/Sept-Dec2019/ELEC491-Capstone/gitlab/topaz_ben" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Python" />
   </component>
   <component name="RunManager">
@@ -82,7 +82,6 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="74e0beb2-e139-44df-9aab-d67ab90230eb" name="Default Changelist" comment="" />
-      <changelist id="4ab55521-8476-4bad-abbc-2741b3220306" name="Revert: " comment="" />
       <created>1581341952579</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -115,6 +114,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2445" y="83" width="859" height="912" key="CommitChangelistDialog2/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1581407970760" />
+    <state x="2660" y="588" key="FileChooserDialogImpl" timestamp="1581486064846">
+      <screen x="1920" y="312" width="1920" height="1040" />
+    </state>
+    <state x="2660" y="588" key="FileChooserDialogImpl/1920.312.1920.1040/0.0.1920.1040@1920.312.1920.1040" timestamp="1581486064846" />
     <state width="1897" height="287" key="GridCell.Tab.0.bottom" timestamp="1581406552319">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -153,6 +156,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2475" y="275" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1581408007540" />
+    <state x="2576" y="657" key="com.intellij.ide.util.TipDialog" timestamp="1581486025283">
+      <screen x="1920" y="312" width="1920" height="1040" />
+    </state>
+    <state x="2576" y="657" key="com.intellij.ide.util.TipDialog/1920.312.1920.1040/0.0.1920.1040@1920.312.1920.1040" timestamp="1581486025283" />
     <state x="2648" y="459" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581390767990">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
