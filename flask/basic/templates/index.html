@@ -16,6 +16,35 @@
                 }
             });
         };
+        
+        document.addEventListener("DOMContentLoaded", function(event){
+            var fileInput = document.getElementById("myfile");
+            console.log(fileInput);
+            fileInput.addEventListener("change", handleFiles, false);
+        });
+        
+        function handleFiles() {
+            var img = document.getElementById("myfile");
+            formData = new FormData();
+            formData.append('image', img.files[0]);
+            console.log(img);
+            console.log(img.files[0]);
+            $.ajax({
+                url:'/files',
+                type: 'post',
+                cache: false,
+                processData: false,
+                contentType: false,
+                data: formData,
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            })
+        }
+
     </script>
     <title>Flask App</title> 
 </head>
@@ -23,5 +52,10 @@
     <h1>Flask App</h1>
     <p>Trying to render html template, but this is just templates/ not app/templates/</p>
     <button name="testbtn" type="button" onclick="buttonAjax()">Test Button</button>
+    <br />
+    <form>
+        <label for="myfile">Select a file:</label>
+        <input type="file" id="myfile" name="myfile">
+    </form>
 </body>
 </html>
