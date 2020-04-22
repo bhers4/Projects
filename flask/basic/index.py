@@ -10,6 +10,10 @@ app = Flask(__name__)
 def hello_world():
     return render_template("index.html")
 
+@app.route('/chart')
+def chartpage():
+    return render_template("testChart.html")
+
 @app.route('/testAjax', methods=['POST'])
 def testButton():
     for i in range(5):
@@ -24,6 +28,10 @@ def testFiles():
         print("In Post")
         for item in request.files.items():
             print("Item: ", item)
+            print("Item len: ", len(item))
+            print("filename: ", item[1].filename)
+            print("filename split: ", item[1].filename.split("."))
+            print("Name: ", item[1].name)
             print(type(item[1]))
             try:
                 pilImg = Image.open(item[1])
