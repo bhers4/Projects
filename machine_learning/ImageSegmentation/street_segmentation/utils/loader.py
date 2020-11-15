@@ -22,4 +22,4 @@ def load_images(img_dir):
     for key in keys_to_delete:
         del imgs[key]
     print("Len imgs: ", len(imgs.keys()), " Len jsons: ", len(jsons.keys()))
-    return
+    return imgs, jsons
