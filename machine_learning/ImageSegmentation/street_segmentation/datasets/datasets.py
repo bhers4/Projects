@@ -8,6 +8,7 @@ import cv2 as opencv
 import json
 import enum
 from torchvision import datasets
+import torchvision
 
 class DatasetTypes(enum.Enum):
     supported = 1
@@ -15,7 +16,7 @@ class DatasetTypes(enum.Enum):
 
 class TrainerDataset(object):
 
-    def __init__(self, dataset_info, num_workers):
+    def __init__(self, dataset_info, num_workers, transforms=None):
         self.dataset_info = dataset_info
         self.num_workers = num_workers
         # Supported Datasets
@@ -23,23 +24,27 @@ class TrainerDataset(object):
         self.dataset_name = dataset_info['name']
         self.batch_size = dataset_info['batch_size']
         # Do check if dataset_name is in supported_datasets
+        self.transforms = transforms
         if self.dataset_name in self.supported_datasets:
-            print("Supported dataset")
             self.dataset_type = DatasetTypes.supported
         else:
-            print("Custom")
             self.dataset_type = DatasetTypes.custom
         if self.dataset_type == DatasetTypes.supported:
             self.load_supported_dataset()
+
         return
 
     def load_supported_dataset(self):
+        if self.transforms is None:
+            self.transforms = torchvision.transforms.ToTensor()
+
         if self.dataset_name == "CIFAR10":
-            self.train_dataset = datasets.CIFAR10('data/', train=True, download=True)
-            self.test_dataset = datasets.CIFAR10('data/', train=False, download=True)
+            self.train_dataset = datasets.CIFAR10('data/', train=True, download=True, transform=self.transforms)
+            self.test_dataset = datasets.CIFAR10('data/', train=False, download=True, transform=self.transforms)
         # TODO rest of loaders
 
         # Dataloaders
+
         self.train_loader = DataLoader(self.train_dataset, batch_size=self.batch_size, shuffle=True,
                                        num_workers=self.num_workers)
         self.test_loader = DataLoader(self.test_dataset, batch_size=self.batch_size, shuffle=True,
@@ -49,8 +54,12 @@ class TrainerDataset(object):
     def get_batch_size(self):
         return self.batch_size
 
+    def get_train_iter(self):
+        # Look into setting epoch number
+        return iter(self.train_loader)
 
-
+    def get_test_iter(self):
+        return iter(self.test_loader)
 
 
 class ImageDataset(Dataset):

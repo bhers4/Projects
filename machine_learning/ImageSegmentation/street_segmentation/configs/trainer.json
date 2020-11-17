@@ -1,9 +1,18 @@
 {
   "name": "Image Segmentation",
-  "split": 0.8,
   "dataset": {
     "name": "CIFAR10",
     "batch_size": 32,
-    "shuffle": true
+    "shuffle": true,
+    "split": 0.8
+  },
+  "run": {
+    "num_epochs": 10
+  },
+  "models": {
+    "name": "Resnet18",
+    "task": "segmentation",
+    "num_classes": 10,
+    "pretrained": true
   }
 }
