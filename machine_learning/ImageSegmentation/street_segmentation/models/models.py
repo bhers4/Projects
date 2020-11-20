@@ -10,8 +10,9 @@ def load_models(model_info):
     model_pretrained = model_info['pretrained']
     if model_name in supported_models:
         if model_name == "Resnet18":
-            # model = models.resnet18(pretrained=model_pretrained)
+            # TODO set task
             model = Resnet18(num_classes=model_info['num_classes'])
+            # TODO add in functionality that loads all pretrained parameters except last layer
         elif model_name == "Resnet50":
             model = models.resnet34(pretrained=model_pretrained)
         elif model_name == "Mobilenet":
@@ -23,6 +24,9 @@ def load_models(model_info):
         else:
             print("Unknown model... defaulting to resnet18")
             model = models.resnet18(pretrained=model_pretrained)
-    return
+    else:
+        print("Unknown model... defaulting to resnet18")
+        model = models.resnet18(pretrained=model_pretrained)
+    return model
 
 # TODO add in class versions of this because based on task need different outputs

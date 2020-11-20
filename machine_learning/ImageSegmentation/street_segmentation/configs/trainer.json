@@ -11,8 +11,11 @@
   },
   "models": {
     "name": "Resnet18",
-    "task": "segmentation",
+    "task": "classification",
     "num_classes": 10,
     "pretrained": true
+  },
+  "loss": {
+    "name": "CrossEntropyLoss"
   }
 }

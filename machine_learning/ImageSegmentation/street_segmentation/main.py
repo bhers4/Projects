@@ -3,6 +3,7 @@ import json
 from datasets.datasets import parse_dataset
 from trainer.trainer import Trainer
 from models.models import load_models
+from loss.loss import load_loss
 
 help='deep learning framework'
 
@@ -28,11 +29,21 @@ if __name__ == "__main__":
     dataset = parse_dataset(configs_file['dataset'], threads)
     run_args = configs_file['run']
     # Model
-    model = load_models(configs_file['model'])
+    model = load_models(configs_file['models'])
     # Trainer
     nn_trainer = Trainer()
+    # Set number of epochs
     nn_trainer.set_epochs(run_args['num_epochs'])
+    # Set Datasets
     nn_trainer.set_trainer_dataset(dataset)
+    # Set Model
+    nn_trainer.set_model(model)
+    # Set Loss
+    loss = load_loss(configs_file["loss"])
+    nn_trainer.set_loss(loss)
+    # Optim
+    # TODO optim
+    # Train!
     nn_trainer.train_network()
 '''
     IDEA: calculate approximate data size, along with RAM target

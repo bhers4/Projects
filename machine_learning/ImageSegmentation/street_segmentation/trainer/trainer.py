@@ -23,6 +23,8 @@ class Trainer(object):
         self.valid_args = False
         # Model
         self.model = None
+        # Loss Function for training
+        self.loss = None
 
         return
 
@@ -45,6 +47,13 @@ class Trainer(object):
     def get_model(self):
         return self.model
 
+    def set_loss(self, loss):
+        self.loss = loss
+        return
+
+    def get_loss(self):
+        return self.loss
+
     def check_parameters(self):
         # First check, number of epochs is greater than 0
         if self.num_epoch > 0:
@@ -62,10 +71,15 @@ class Trainer(object):
             self.train_dataset = self.dataset_trainer.get_train_iter()
             self.test_dataset = self.dataset_trainer.get_test_iter()
             # Enumerate over dataset
-            # for i, data in enumerate(self.train_dataset, 0):
-            #     inputs = data[0]
-            #     targets = data[1]
-            #     print("inputs: ", inputs.shape)
-            #     print("targets: ", targets.shape)
+            for i, data in enumerate(self.train_dataset, 0):
+                inputs = data[0]
+                targets = data[1]
+                print("inputs: ", inputs.shape)
+                print("targets: ", targets.shape)
+                # Get output
+                output = self.model(inputs)
+                print("Output: ", output.shape)
+                local_loss = self.loss(output, targets)
+                print("Local loss: ", local_loss)
 
         return
