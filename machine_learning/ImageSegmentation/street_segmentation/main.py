@@ -4,6 +4,8 @@ from datasets.datasets import parse_dataset
 from trainer.trainer import Trainer
 from models.models import load_models
 from loss.loss import load_loss
+from optim.optim import load_optim
+from matplotlib import pyplot as plt
 
 help='deep learning framework'
 
@@ -42,9 +44,16 @@ if __name__ == "__main__":
     loss = load_loss(configs_file["loss"])
     nn_trainer.set_loss(loss)
     # Optim
-    # TODO optim
+    optim = load_optim(configs_file['optim'], model)
+    nn_trainer.set_optim(optim)
     # Train!
     nn_trainer.train_network()
+    plt.plot(nn_trainer.epoch_losses, c='b', label='train')
+    plt.plot(nn_trainer.epoch_test_losses, c='r', label='test')
+    plt.plot(nn_trainer.test_accs, c='m', label='Test Acc')
+    plt.title("Epoch losses")
+    plt.legend()
+    plt.show()
 '''
     IDEA: calculate approximate data size, along with RAM target
 '''
