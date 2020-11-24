@@ -1,5 +1,5 @@
 {
-  "name": "Image Segmentation",
+  "name": "CIFAR10 Project",
   "dataset": {
     "name": "CIFAR10",
     "batch_size": 2048,
@@ -21,5 +21,10 @@
   "optim": {
     "name": "Adam",
     "lr": 0.01
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 5000,
+    "active": true
   }
 }

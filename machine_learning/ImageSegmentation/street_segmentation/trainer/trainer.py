@@ -13,7 +13,7 @@ class Trainer(object):
         '''
         # Number of Epochs to Train
         self.num_epoch = 0
-
+        self.curr_epoch = 0
         # Datasets
         self.dataset_trainer = None
         self.train_dataset = None
@@ -35,6 +35,8 @@ class Trainer(object):
         self.iter_losses = []
         # Active flag
         self.active = False
+        # Save Config
+        self.config = None
 
         return
 
@@ -114,6 +116,7 @@ class Trainer(object):
         print("Starting training...")
         for epoch in range(self.num_epoch):
             # Get iterators
+            self.curr_epoch = epoch
             self.train_dataset = self.dataset_trainer.get_train_iter()
             self.test_dataset = self.dataset_trainer.get_test_iter()
             self.iter_losses = []

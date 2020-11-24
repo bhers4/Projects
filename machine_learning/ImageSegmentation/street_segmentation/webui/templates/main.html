@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='UTF-8'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!-- Importing Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!--ChartJs-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+    <script type="text/javascript" src="{{url_for('static', filename='main.js')}}"></script>
+
+    <title>Web Trainer</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">Web Trainer</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+    <div class="container">
+        <h3>Web Trainer</h3>
+        <div class="row">
+            <h3>{{ name }}</h3>
+        </div>
+        <div class="row">
+            <h3>Dataset Info</h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-2">
+                <h5>Dataset Name:{{dataset_name}}</h5>
+            </div>
+            <div class="col-lg-2">
+                <h5>Batch Size:{{batch_size}}</h5>
+            </div>
+            <div class="col-lg-2">
+                <h5>Shuffle:{{shuffle}}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <h3>Train</h3>
+        </div>
+        <div class="row">
+            <button id='train_go' class="btn btn-lg btn-primary">Train</button>
+        </div>
+        <div class="row">
+            <h4>Graph</h4>
+            <div class="col-lg-12">
+                <canvas id="training_graph"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
