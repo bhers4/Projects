@@ -62,10 +62,6 @@ if __name__ == "__main__":
         webui.set_trainer(nn_trainer)
         # If you run it then you gotta hand off control to clicking webserver
         webui.run()
-        # webui.train()
-        # epoch_losses = webui.trainer.epoch_losses
-        # epoch_test_losses = webui.trainer.epoch_test_losses
-        # test_accs = webui.trainer.test_accs
     else:
         nn_trainer.train_network()
         epoch_losses = nn_trainer.epoch_losses

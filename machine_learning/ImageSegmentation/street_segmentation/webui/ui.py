@@ -65,12 +65,13 @@ class WebInterface:
         epoch_loss = self.trainer.epoch_losses
         epoch_test_losses = self.trainer.epoch_test_losses
         test_accs = self.trainer.test_accs
+        train_accs = self.trainer.train_accs
         curr_epoch = self.trainer.curr_epoch
         total_epochs = self.trainer.num_epoch
         curr_active = self.trainer.active
         return json.dumps({'status':'OK', 'epoch_loss':epoch_loss, 'epoch_test_losses':epoch_test_losses,
                            'test_accs':test_accs, 'curr_epoch':curr_epoch,'total_epochs':total_epochs,
-                           'curr_active':curr_active})
+                           'curr_active':curr_active, 'train_accs': train_accs})
 
     # Rendering Functions
     # /
@@ -78,6 +79,12 @@ class WebInterface:
         print("Main Page")
         return render_template('main.html', name=self.name, dataset_name=self.trainer.config['dataset']['name'],
                                batch_size=self.trainer.config['dataset']['batch_size'],
-                               shuffle=self.trainer.config['dataset']['shuffle'])
+                               shuffle=self.trainer.config['dataset']['shuffle'],
+                               split=self.trainer.config['dataset']['split'],
+                               num_epochs=self.trainer.config['run']['num_epochs'],
+                               model=self.trainer.config['models']['name'],
+                               num_classes=self.trainer.config['models']['num_classes'],
+                               lr=self.trainer.config['optim']['lr'],
+                               optim=self.trainer.config['optim']['name'])
 
 

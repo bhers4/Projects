@@ -21,34 +21,83 @@
         <span class="navbar-toggler-icon"></span>
       </button>
     </nav>
-    <div class="container">
-        <h3>Web Trainer</h3>
+    <div class="container" style="width: 95%">
+        <div class="row d-flex justify-content-center">
+            <h3>Web Trainer</h3>
+        </div>
         <div class="row">
-            <h3>{{ name }}</h3>
+            <label for="project_name">Project Name</label>
+            <input type="text" class="form-control" id="project_name" value="{{name}}"></input>
         </div>
         <div class="row">
             <h3>Dataset Info</h3>
         </div>
-        <div class="row">
+        <div class="row" style="margin: 0.5rem">
             <div class="col-lg-2">
-                <h5>Dataset Name:{{dataset_name}}</h5>
+                <label for="dataset_name">Dataset Name:</label>
+                <input class="form-control" type="text" id="dataset_name" value="{{dataset_name}}"></input>
             </div>
             <div class="col-lg-2">
-                <h5>Batch Size:{{batch_size}}</h5>
+                <label for="batch_size">Batch Size:</label>
+                <input class="form-control" type="number" id="batch_size" value="{{batch_size}}"></input>
             </div>
             <div class="col-lg-2">
-                <h5>Shuffle:{{shuffle}}</h5>
+                <label for="shuffle">Shuffle</label>
+                <select class="form-control" id="shuffle">
+                    <option>True</option>
+                    <option>False</option>
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <label for="train_split">Split:</label>
+                <input class="form-control" type="number" id="train_split" value="{{split}}"></input>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin: 1rem">
+            <div class="col-lg-2">
+                <label for="num_epochs">Number of Epochs</label>
+                <input class="form-control" type='number' id="num_epochs" value="{{num_epochs}}"></input>
+            </div>
+            <div class="col-lg-2">
+                <label for="model">Model</label>
+                <select class="form-control" id="model">
+                    <option>{{model}}</option>
+                    <option>Resnet18</option>
+                    <option>Resnet34</option>
+                    <option>Mobilenet</option>
+                    <option>Squeezenet</option>
+                    <option>Inceptionv3</option>
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <label for="num_classes">Number of Classes</label>
+                <input class="form-control" type='number' id="num_classes" value="{{num_classes}}" disabled></input>
+            </div>
+        </div>
+        <div class="row" style="margin:1rem">
+            <div class="col-lg-2">
+                <label for="optim">Optim</label>
+                <input class="form-control" type='text' id="optim" value="{{optim}}"></input>
+            </div>
+            <div class="col-lg-2">
+                <label for="lr">Learning Rate</label>
+                <input class="form-control" type='number' id="lr" value="{{lr}}"></input>
+            </div>
+        </div>
+        <div class="row" style="margin:1rem">
             <h3>Train</h3>
         </div>
-        <div class="row">
+        <div class="row" style="margin:1rem">
             <button id='train_go' class="btn btn-lg btn-primary">Train</button>
         </div>
         <div class="row">
-            <h4>Graph</h4>
             <div class="col-lg-12">
+                <h4>Graphs</h4>
+            </div>
+            <div class="col-lg-6">
+                <canvas id="acc_graphs"></canvas>
+            </div>
+            <div class="col-lg-6">
                 <canvas id="training_graph"></canvas>
             </div>
         </div>
