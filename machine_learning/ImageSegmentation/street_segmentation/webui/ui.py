@@ -1,6 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import os
 import json
+import threading
 
 class WebInterface:
 
@@ -16,6 +17,8 @@ class WebInterface:
         self.app = Flask(name, static_url_path='/webui/static', template_folder='webui/templates/')
         # Call Setup
         self.setup_routes()
+        # Trainer Thread
+        self.trainer_thread = None
         return
 
     def setup_routes(self):
@@ -24,7 +27,7 @@ class WebInterface:
         self.add_endpoint('/webui/static/<file>', endpoint_name='server static files', handler=self.get_static_file,
                           methods=['GET'])
         self.add_endpoint('/train/data/', endpoint_name='train_data', handler=self.get_training_data, methods=['GET'])
-        self.add_endpoint('/train', endpoint_name='train_start', handler=self.train_page, methods=['GET'])
+        self.add_endpoint('/train', endpoint_name='train_start', handler=self.train_page, methods=['POST'])
         return
 
     def add_endpoint(self, endpoint=None, endpoint_name=None, handler=None, methods=None):
@@ -45,13 +48,35 @@ class WebInterface:
     def get_trainer(self):
         return self.trainer
 
-    def train(self):
-        self.trainer.train_network()
+    def train(self, train_info):
+        self.trainer.train_network(train_info)
         return
 
     # /train
     def train_page(self):
-        self.train()
+        print("Train page")
+        project_name = request.form['project_name']
+        print("Project")
+        dataset_name = request.form['dataset_name']
+        print("Dataset")
+        batch_size = request.form['batch_size']
+        print("batch_size")
+        shuffle = request.form['shuffle']
+        print("shuffle")
+        optim = request.form['optim']
+        print("lr")
+        lr = request.form['lr']
+        print("Project Name: {}\nDataset Name: {}\nBatch Size: {}\nShuffle: {}\nOptim: {}\nLr: {}\n".format(project_name,
+                                                                                                            dataset_name,
+                                                                                                            batch_size,
+                                                                                                            shuffle,
+                                                                                                            optim,
+                                                                                                            lr))
+        train_info = (project_name, dataset_name, batch_size, shuffle, optim, lr)
+        train_func = threading.Thread(target=self.train, args=(train_info,))
+        train_func.start()
+        self.trainer_thread = train_func
+        # self.train(train_info)
         return json.dumps({'status':'OK'})
 
     # /webui/static/<file>

@@ -8,12 +8,35 @@ window.addEventListener('DOMContentLoaded', (event)=>{
    // Add Button Event Listener
     train_button = document.getElementById('train_go');
     train_button.addEventListener('click', (event)=>{
-        console.log("Train!");
+        // Get Form Info
+        project_name = document.getElementById('project_name').innerText;
+        dataset_name = document.getElementById('dataset_name').innerText;
+        batch_size = document.getElementById('batch_size').value;
+        shuffle = document.getElementById('shuffle').value;
+        split = document.getElementById('train_split').value;
+        num_epochs = document.getElementById('num_epochs').value;
+        model = document.getElementById('model').value;
+        optim = document.getElementById('optim').value;
+        lr = document.getElementById('lr').value;
+
+        // Form data
+        form_data = new FormData();
+        form_data.append('project_name', project_name);
+        form_data.append('dataset_name', dataset_name);
+        form_data.append('batch_size', batch_size);
+        form_data.append('shuffle', shuffle);
+        form_data.append('optim', optim);
+        form_data.append('lr', lr);
+
+        // Change to a post request
         // Do ajax call
         $.ajax({
-            url: '/train',
-            type: 'GET',
-            dataType: 'json',
+            url:'/train',
+            type: 'post',
+            cache: false,
+            processData: false,
+            contentType: false,
+            data: form_data,
             success: (response)=>{
                 console.log("Response: ", response);
             },

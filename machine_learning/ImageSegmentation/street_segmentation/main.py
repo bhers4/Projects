@@ -38,7 +38,7 @@ if __name__ == "__main__":
     dataset = parse_dataset(configs_file['dataset'], threads)
     run_args = configs_file['run']
     # Model
-    model = load_models(configs_file['models'])
+    model = load_models(configs_file['models'], dataset)
     # Trainer
     nn_trainer = Trainer()
     # Set number of epochs

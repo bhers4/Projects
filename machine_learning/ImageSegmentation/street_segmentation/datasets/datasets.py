@@ -25,12 +25,16 @@ class TrainerDataset(object):
         self.batch_size = dataset_info['batch_size']
         # Do check if dataset_name is in supported_datasets
         self.transforms = transforms
+        # Channels
+        self.channels = 3
+
         if self.dataset_name in self.supported_datasets:
             self.dataset_type = DatasetTypes.supported
         else:
             self.dataset_type = DatasetTypes.custom
         if self.dataset_type == DatasetTypes.supported:
             self.load_supported_dataset()
+
 
         return
 
@@ -41,6 +45,10 @@ class TrainerDataset(object):
         if self.dataset_name == "CIFAR10":
             self.train_dataset = datasets.CIFAR10('data/', train=True, download=True, transform=self.transforms)
             self.test_dataset = datasets.CIFAR10('data/', train=False, download=True, transform=self.transforms)
+        elif self.dataset_name == "MNIST":
+            self.channels = 1
+            self.train_dataset = datasets.MNIST('data/', train=True, download=True, transform=self.transforms)
+            self.test_dataset = datasets.MNIST('data/', train=False, download=True, transform=self.transforms)
         # TODO rest of loaders
 
         # Dataloaders

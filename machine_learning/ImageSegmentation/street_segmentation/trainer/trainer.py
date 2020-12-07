@@ -12,7 +12,6 @@ class Trainer(object):
     def __init__(self):
         '''
             Set Default Parameters
-            - num_epochs
         '''
         # Number of Epochs to Train
         self.num_epoch = 0
@@ -109,12 +108,23 @@ class Trainer(object):
             self.test_losses.append(local_loss.item())
         return np.mean(self.test_losses)
 
-    def train_network(self):
+    def train_network(self, train_info):
         self.check_parameters()
         if not self.valid_args:
             print("Havent set everything in JSON")
             return
         # Do something about potentially changed parameters here from UI
+        project_name, dataset_name, batch_size, shuffle, optim, lr = train_info
+        if self.config['name'] != project_name:
+            print("Changed Project Name to ", project_name)
+        if self.dataset_trainer.dataset_name != dataset_name:
+            print("Dataset Name changed: ", dataset_name)
+        if self.dataset_trainer.batch_size != batch_size:
+            print("Batch size changed: ", batch_size)
+        # Optim
+        if self.config['optim'] != lr:
+            print("Learning rate changed: ", lr)
+        # Run ID
         self.run_id = "".join(self.config['name'].split(" "))
         self.project_name = str(self.run_id)
         curr_date = datetime.datetime.now()
@@ -179,6 +189,7 @@ class Trainer(object):
         json_file = os.path.join(run_dir, 'run.json')
         with open(json_file, "w+") as json_data:
             run_data = {}
+            run_data['model_info'] = self.config['models']
             run_data['train_loss'] = self.epoch_losses
             run_data['test_loss'] = self.epoch_test_losses
             run_data['train_accs'] = self.train_accs

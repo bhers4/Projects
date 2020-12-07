@@ -1,13 +1,13 @@
 {
-  "name": "CIFAR10 Project",
+  "name": "MNIST Project",
   "dataset": {
-    "name": "CIFAR10",
+    "name": "MNIST",
     "batch_size": 2048,
     "shuffle": true,
     "split": 0.8
   },
   "run": {
-    "num_epochs": 12
+    "num_epochs": 5
   },
   "models": {
     "name": "Resnet18",
