@@ -63,7 +63,10 @@ if __name__ == "__main__":
         # If you run it then you gotta hand off control to clicking webserver
         webui.run()
     else:
-        nn_trainer.train_network()
+        # project_name, dataset_name, batch_size, shuffle, optim, lr = train_info
+        train_info = (configs_file['name'], configs_file['dataset']['name'], configs_file['dataset']['batch_size'],
+                      configs_file['dataset']['shuffle'], configs_file['optim']['name'], configs_file['optim']['lr'])
+        nn_trainer.train_network(train_info)
         epoch_losses = nn_trainer.epoch_losses
         epoch_test_losses = nn_trainer.epoch_test_losses
         test_accs = nn_trainer.test_accs
